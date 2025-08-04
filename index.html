@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comisiones Distribuidores DANEMED</title>
+    <link rel="stylesheet" href="styles.css">
+<link type="text/css" rel="stylesheet" href="css/style.css"/>
+<link type="text/css" rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+    <div class="container">
+        <h2>Comisiones Distribuidores DANEMED</h2>
+        <label for="tipo-comision">Selecciona el tipo de comisión:</label>
+        <select id="tipo-comision" onchange="toggleCantidad()">
+            <option value="">Seleccionar</option>
+            <option value="2.5">Tarjeta Física (2.5%)</option>
+            <option value="2.58">Link de Pago (2.58%)</option>
+        </select>
+      <br><br> 
+        <label for="cantidad">Cantidad en pesos mexicanos:</label>
+        <input type="text" id="cantidad" placeholder="Ingresa el monto" oninput="formatearCantidad()" disabled>
+        <div>
+            <p>Comisión (<span id="porcentaje-comision">0%</span>): <span id="comision">0</span> MXN</p>
+            <p>IVA Comisión (16%): <span id="iva-comision">0</span> MXN</p>
+            <div class="total-comision-container">
+                <span class="total-comision" id="total-comision">0</span> MXN
+                <button class="copy-btn" onclick="copiarTexto('total-comision', this)">📋</button>
+            </div>
+            <p>Recibimos: <span id="recibimos">0</span> MXN</p>
+        </div>
+        <div class="nota">⚠️ En todos los pedidos debe añadirse el ítem "Material de entrega" con un costo fijo de $30.</div>
+    </div>
+
+
+    <!-- INICIO: Tabla de Promociones -->
+<div class="promotions-container">
+  <center><h2>PROMOCIONES MAYO 2025</h2></center>
+  <table class="promos">
+    <thead>
+      <tr>
+        <th><center>Promos Mayo 2025</center></th>
+        <th><center>Detalle</center></th>
+        <th><center>Precio Distribuidor</center></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Promo Junior Opción #1</b></td>
+        <td>3 Rejeunesse + 1 Renovah</td>
+        <td><center>$3,450</center></td>
+        <td>
+            <!-- Aquí definimos el texto que queremos copiar -->
+            <button
+            class="copy-btn"
+            data-copy-text="PROMO JUNIOR: $3,450&#10;3 Rejeunesse (falta por definir densidades)&#10;1 Otros Renovah Serum SER001"
+            onclick="copiarTextoPersonalizado(this)"
+            >📋</button>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Promo Junior Opción #2</b></td>
+        <td>3 Rejeunesse + 1 Crema anestésica</td>
+        <td><center>3,575</center></td>
+        <td>
+            <!-- Aquí definimos el texto que queremos copiar -->
+            <button
+            class="copy-btn"
+            data-copy-text="PROMO JUNIOR: $3,575&#10;3 Rejeunesse (falta por definir densidades)&#10;1 Material CREMA ANESTESICA MAT042"
+            onclick="copiarTextoPersonalizado(this)"
+            >📋</button>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Promo Plus</b></td>
+        <td>5+2 Rejeunesse + 1 Renovah o Crema</td>
+        <td><center>$7,875</center></td>
+        <td>
+            <!-- Aquí definimos el texto que queremos copiar -->
+            <button
+            class="copy-btn"
+            data-copy-text="PROMO PLUS: $7,875&#10;5+2 Rejeunesse (falta por definir densidades)&#10;1 Renovah ó Crema anestésica"
+            onclick="copiarTextoPersonalizado(this)"
+            >📋</button>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Promo Advanced</b></td>
+        <td>10+4 Rejeunesse + 2 Renovah o Cremas</td>
+        <td><center>$15,750</center></td>
+        <td>
+          <!-- Aquí definimos el texto que queremos copiar -->
+            <button
+            class="copy-btn"
+            data-copy-text="PROMO ADVANCED: $15,750&#10;10+4 Rejeunesse (falta por definir densidades)&#10;2 Renovah ó Crema anestésica"
+            onclick="copiarTextoPersonalizado(this)"
+            >📋</button>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Promo Premium</b></td>
+        <td>20+7 Rejeunesse + 3 Renovah o Cremas</td>
+        <td><center>$30,375</center></td>
+        <td>
+            <!-- Aquí definimos el texto que queremos copiar -->
+            <button
+            class="copy-btn"
+            data-copy-text="PROMO PREMIUM: $30,375&#10;20+7 Rejeunesse (falta por definir densidades)&#10;3 Renovah ó Crema anestésica"
+            onclick="copiarTextoPersonalizado(this)"
+            >📋</button>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Promo VIP</b></td>
+        <td>50+15 Rejeunesse + 5 Renovah o Cremas</td>
+        <td><center>$73,125</center></td>
+        <td>
+            <!-- Aquí definimos el texto que queremos copiar -->
+            <button
+            class="copy-btn"
+            data-copy-text="PROMO VIP: $73,125&#10;50+15 Rejeunesse (falta por definir densidades)&#10;5 Renovah ó Crema anestésica"
+            onclick="copiarTextoPersonalizado(this)"
+            >📋</button>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Promo #1</b></td>
+        <td>3 Pink Intimate + 1 Renovah</td>
+        <td><center>$1,875</center></td>
+        <td>
+            <!-- Aquí definimos el texto que queremos copiar -->
+            <button
+            class="copy-btn"
+            data-copy-text="PROMO #1: $1,875&#10;3 Otros Pink Intimate PI001&#10;1 Otros Renovah Serum SER001"
+            onclick="copiarTextoPersonalizado(this)"
+            >📋</button>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Promo #2</b></td>
+        <td>14 Pink Intimate + 4 Renovah</td>
+        <td><center>$8,800</center></td>
+        <td>
+            <!-- Aquí definimos el texto que queremos copiar -->
+            <button
+            class="copy-btn"
+            data-copy-text="PROMO #2: $8,800&#10;14 Otros Pink Intimate PI001&#10;4 Otros Renovah Serum SER001"
+            onclick="copiarTextoPersonalizado(this)"
+            >📋</button>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Promo #3</b></td>
+        <td>28 Pink Intimate + 8 Renovah</td>
+        <td><center>$15,600</center></td>
+        <td>
+            <!-- Aquí definimos el texto que queremos copiar -->
+            <button
+            class="copy-btn"
+            data-copy-text="PROMO #3: $15,600&#10;28 Otros Pink Intimate PI001&#10;8 Otros Renovah Serum SER001"
+            onclick="copiarTextoPersonalizado(this)"
+            >📋</button>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Promo #4</b></td>
+        <td>10 LusciousLips</td>
+        <td><center>$5,500</center></td>
+        <td>
+            <!-- Aquí definimos el texto que queremos copiar -->
+            <button
+            class="copy-btn"
+            data-copy-text="PROMO #4: $5,500&#10;10 LusciousLips (falta por definir colores)"
+            onclick="copiarTextoPersonalizado(this)"
+            >📋</button>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Promo #5</b></td>
+        <td>22 LusciousLips</td>
+        <td><center>$12,200</center></td>
+        <td>
+            <!-- Aquí definimos el texto que queremos copiar -->
+            <button
+            class="copy-btn"
+            data-copy-text="PROMO #5: $12,200&#10;22 LusciousLips (falta por definir colores)"
+            onclick="copiarTextoPersonalizado(this)"
+            >📋</button>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Promo #6</b></td>
+        <td>3 Rich PL</td>
+        <td><center>$17,000</center></td>
+        <td>
+            <!-- Aquí definimos el texto que queremos copiar -->
+            <button
+            class="copy-btn"
+            data-copy-text="PROMO #6: $17,000&#10;3 Medicamento RICH PL CM010"
+            onclick="copiarTextoPersonalizado(this)"
+            >📋</button>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Promo #7</b></td>
+        <td>6+2 Rich PL</td>
+        <td><center>$40,000</center></td>
+        <td>
+            <!-- Aquí definimos el texto que queremos copiar -->
+            <button
+            class="copy-btn"
+            data-copy-text="PROMO #7: $40,000&#10;8 Medicamento RICH PL CM010"
+            onclick="copiarTextoPersonalizado(this)"
+            >📋</button>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Promo #8</b></td>
+        <td>16+6 Rich PL</td>
+        <td><center>$110,000</center></td>
+        <td>
+            <!-- Aquí definimos el texto que queremos copiar -->
+            <button
+            class="copy-btn"
+            data-copy-text="PROMO #8: $110,000&#10;16+6 Medicamento RICH PL CM010"
+            onclick="copiarTextoPersonalizado(this)"
+            >📋</button>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Promo #9</b></td>
+        <td>20+8 Rich PL</td>
+        <td><center>$140,000</center></td>
+        <td>
+            <!-- Aquí definimos el texto que queremos copiar -->
+            <button
+            class="copy-btn"
+            data-copy-text="PROMO #9: $140,000&#10;28 Medicamento RICH PL CM010"
+            onclick="copiarTextoPersonalizado(this)"
+            >📋</button>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Promo Renovah</b></td>
+        <td>15 Renovah + 1 Roll Up</td>
+        <td><center>$3,276</center></td>
+        <td>
+            <!-- Aquí definimos el texto que queremos copiar -->
+            <button
+            class="copy-btn"
+            data-copy-text="PROMO RENOVAH: $3,276&#10;15 Otros Renovah Serum SER001&#10;1 Otros Roll Up Display PEQUEÑO 21x31cm - Renovah #1 CAT009"
+            onclick="copiarTextoPersonalizado(this)"
+            >📋</button>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Promo LusciousLips</b></td>
+        <td>5 LusciousLips + 1 Roll Up</td>
+        <td><center>$3,276</center></td>
+        <td>
+            <!-- Aquí definimos el texto que queremos copiar -->
+            <button
+            class="copy-btn"
+            data-copy-text="PROMO LUSCIOUSLIPS: $3,276&#10;5 LusciousLips (falta por definir colores)&#10;1 Roll Up LusciousLips (falta definir cuál de los Roll Up)"
+            onclick="copiarTextoPersonalizado(this)"
+            >📋</button>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Promo Produktil</b></td>
+        <td>2 Produktil</td>
+        <td><center>$3,500</center></td>
+        <td>
+            <!-- Aquí definimos el texto que queremos copiar -->
+            <button
+            class="copy-btn"
+            data-copy-text="PROMO PRODUKTIL: $3,500&#10;2 Medicamento Produktil PR002"
+            onclick="copiarTextoPersonalizado(this)"
+            >📋</button>
+        </td>
+      </tr>
+      <tr>
+        <td><b>Promo Cursos 20%</b></td>
+        <td>Cursos con 20% descuento</td>
+        <td><center>-</center></td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><b>Promo Cursos 40%</b></td>
+        <td>
+          4 Cursos con 40% descuento<br><br> 
+          OBSEQUIO a elegir 1 de la lista:&#10;<br>
+          3 Crema ó 5 Renovah ó 2 Pink Intimate ó 1 Rejeunesse<br>
+        </td>
+        <td><center>$3,800</center></td>
+        <td>-</td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+<!-- FIN: Tabla de Promociones --> 
+
+  
+    <script src="script.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
+
